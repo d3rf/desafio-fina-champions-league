@@ -15,7 +15,6 @@ def translate_extenso(number):
         if len(decimal_part) == 1:
             digit_extension = dozens[int(decimal_part)]
         elif len(decimal_part) == 2:
-            
             if int(decimal_part[0]) == 1:
                 digit_extension = numbers_plus[int(decimal_part[1])]
             else:
@@ -28,7 +27,10 @@ def translate_extenso(number):
         if pos == 0:
             if number_to_handler > 0: final_order.append(numbers[number_to_handler])
         elif pos == 1:
-            item = dozens[number_to_handler] if number_to_handler == 0 else numbers_plus[last_number_to_help]
+            item = dozens[number_to_handler]
+            if item == 'dez' and int(last_number_to_help) > 0:
+                final_order.pop()
+                item = numbers_plus[last_number_to_help]
             if len(item) > 0:
                 final_order.append(item)
         elif pos == 2:
@@ -41,5 +43,5 @@ def translate_extenso(number):
     
     print(' e '.join(final_order[::-1]))
 
-number_example = 101.91
+number_example = 19.99
 translate_extenso(number_example)
