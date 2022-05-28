@@ -2,7 +2,6 @@ numbers = ['POG','um','dois','três','quatro','cinco','seis','sete','oito','nove
 numbers_plus = ['dez','onze','doze','treze','quatorze','quinze','dezesseis','dezessete','dezoito','dezenove']
 dozens = ['POG','dez','vinte','trinta','quarenta','cinquenta','sessenta','setenta','oitenta','noventa']
 hundreds = ['POG','cento','duzentos','trezentos','quatrozentos','quinhetos','seiscentos','setecentos','oitocentos','novecentos']
-greater = ['POG','mil','milhão','milhões','bilhão','bilhões']
 
 def translate_extenso(number):
     stringfy_number = str(number)
@@ -29,12 +28,13 @@ def translate_extenso(number):
         if pos == 0:
             if number_to_handler > 0: final_order.append(numbers[number_to_handler])
         elif pos == 1:
-            if number_to_handler >= 0: final_order.append(dozens[number_to_handler])
+            item = dozens[number_to_handler] if number_to_handler == 0 else numbers_plus[last_number_to_help]
+            final_order.append(item)
         elif pos == 2:
             if number_to_handler >= 2: final_order.append(hundreds[number_to_handler])
-
+        last_number_to_help = number_to_handler
         pos = pos + 1
     print(' e '.join(final_order[::-1]))
 
-number_example = 211.91
+number_example = 210.91
 translate_extenso(number_example)
